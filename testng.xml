@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Integration tests" thread-count="2" parallel="tests" verbose="1">
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="ITTest1"/>
+            <class name="ITTest2"/>
+        </classes>
+    </test>
+    <test name="ChromeTest">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="ITTest1"/>
+            <class name="ITTest2"/>
+        </classes>
+    </test>
+</suite>

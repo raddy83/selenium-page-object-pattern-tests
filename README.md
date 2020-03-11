@@ -7,3 +7,5 @@ Run tests by # mvn clean test - this will generate proper Allure Report, you can
 <argLine>
                        javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+
+To run tests on Jenkins, install plugin to Allure Report, run command clean test and point location where the allure reports reside.

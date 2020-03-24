@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import pages.HomePage;
 
 public class BaseTest {
     public BaseTest() {
@@ -21,6 +22,13 @@ public class BaseTest {
             WebDriverManager.firefoxdriver().setup();
             BaseDriver.instantiateWebDriver(value);
         }
+    }
+
+    @BeforeMethod(dependsOnMethods = "setUp")
+    public void openBrowserAndAcceptCookies() {
+        HomePage hp = new HomePage();
+        hp.openHomePage();
+        hp.acceptCookiesOnPage();
     }
 
     @AfterMethod(alwaysRun = true)

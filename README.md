@@ -1,5 +1,5 @@
-# friday-sales-funnel-test
-UI tests with https://hello.friday.de/ application, with searching cars brands and types.
+# Selenium example framework with usage Page Object Pattern
+UI tests with example application "hello friday", with searching cars brands and types.
 Test automation framework build with Page object pattern, Selenium, Maven, TestNG, Allure Reporter and Jacoco Report.
 Framework ensure cross-browser testing (Firefox, Chrome), tests are executed at the same time for the mentioned browsers.
 

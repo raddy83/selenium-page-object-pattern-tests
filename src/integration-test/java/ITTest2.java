@@ -2,20 +2,18 @@ import baseTest.BaseTest;
 import listeners.AllureListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.SelectPreconditionPage;
-import pages.SelectRegisteredOwnerPage;
-import pages.SelectVehiclePage;
+import pages.*;
 
 @Listeners(AllureListener.class)
 public class ITTest2 extends BaseTest {
 
+    private SelectPreconditionPage selectPreconditionPage;
+    private SelectRegisteredOwnerPage selectRegisteredOwnerPage;
+    private SelectVehiclePage vehiclePage;
+
     @Test(description = "Negative test with insurance start date in the past", alwaysRun = true)
     public void testWithInsuranceStartDateInPast() {
-        HomePage homePage = new HomePage();
-        homePage.openHomePage();
-        homePage.acceptCookiesOnPage();
-        SelectPreconditionPage selectPreconditionPage = new SelectPreconditionPage();
+        selectPreconditionPage = new SelectPreconditionPage();
         selectPreconditionPage.passIncorrectInceptionDateAndVerifyValidation
                 ("02032020",
                         "Hups! Dieses Datum liegt in der Vergangenheit. Bitte überprüfe deine Eingabe.");
@@ -23,10 +21,7 @@ public class ITTest2 extends BaseTest {
 
     @Test(description = "Negative test with insurance start date in the future", alwaysRun = true)
     public void testWithInsuranceStartDateInFuture() {
-        HomePage homePage = new HomePage();
-        homePage.openHomePage();
-        homePage.acceptCookiesOnPage();
-        SelectPreconditionPage selectPreconditionPage = new SelectPreconditionPage();
+        selectPreconditionPage = new SelectPreconditionPage();
         selectPreconditionPage.passIncorrectInceptionDateAndVerifyValidation
                 ("09032022",
                         "Hups! Dieses Datum liegt zu weit in der Zukunft. Bitte überprüfe deine Eingabe.");
@@ -34,28 +29,22 @@ public class ITTest2 extends BaseTest {
 
     @Test(description = "Negative test with searching car that not exist", alwaysRun = true)
     public void testWithCarThatNotExist() {
-        HomePage homePage = new HomePage();
-        homePage.openHomePage();
-        homePage.acceptCookiesOnPage();
-        SelectPreconditionPage selectPreconditionPage = new SelectPreconditionPage();
+        selectPreconditionPage = new SelectPreconditionPage();
         selectPreconditionPage.selectPreconditions("01062020");
-        SelectRegisteredOwnerPage selectRegisteredOwnerPage = new SelectRegisteredOwnerPage();
+        selectRegisteredOwnerPage = new SelectRegisteredOwnerPage();
         selectRegisteredOwnerPage.chooseSharedNoAndNewCar();
-        SelectVehiclePage vehiclePage = new SelectVehiclePage();
+        vehiclePage = new SelectVehiclePage();
         vehiclePage.chooseCarThatNotExist("FSO",
                 "Diese Marke ist uns nicht bekannt. Bitte überprüfe deine Eingabe.");
     }
 
     @Test(description = "Negative test with searching car by HSN/TSN", alwaysRun = true)
     public void testWithCarByIncorrectHsnTsn() {
-        HomePage homePage = new HomePage();
-        homePage.openHomePage();
-        homePage.acceptCookiesOnPage();
-        SelectPreconditionPage selectPreconditionPage = new SelectPreconditionPage();
+        selectPreconditionPage = new SelectPreconditionPage();
         selectPreconditionPage.selectPreconditions("01062020");
-        SelectRegisteredOwnerPage selectRegisteredOwnerPage = new SelectRegisteredOwnerPage();
+        selectRegisteredOwnerPage = new SelectRegisteredOwnerPage();
         selectRegisteredOwnerPage.chooseSharedNoAndNewCar();
-        SelectVehiclePage vehiclePage = new SelectVehiclePage();
+        vehiclePage = new SelectVehiclePage();
         vehiclePage.chooseCarByHsnTsnThatNotExist("1111", "1111",
                 "Wir konnten kein passendes Fahrzeug ermitteln. Bitte gib nur PKW ein - keine Roller," +
                         " Motorräder, LKW, Wohnmobile oder Anhänger.");
